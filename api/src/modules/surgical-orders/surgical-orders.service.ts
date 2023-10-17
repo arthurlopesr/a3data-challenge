@@ -5,7 +5,7 @@ import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
 @Injectable()
 export class SurgicalOrdersService {
   createOrderSurgery(createSurgicalOrderDto: CreateSurgicalOrderDto) {
-    return 'This action adds a new surgicalOrder';
+    return createSurgicalOrderDto;
   }
 
   findAllOrderSurgery() {
