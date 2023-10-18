@@ -48,18 +48,14 @@ export class SurgicalOrdersService {
     return this.surgicalOrdersRepo.findAll();
   }
 
-  previewOrderSurgery(id: number) {
-    return `This action returns a #${id} surgicalOrder`;
-  }
-
-  updateOrderSurgery(
-    id: number,
+  async updateOrderSurgery(
+    code: string,
     updateSurgicalOrderDto: UpdateSurgicalOrderDto,
   ) {
-    return `This action updates a #${id} surgicalOrder`;
+    return { code, updateSurgicalOrderDto };
   }
 
-  removeOrderSurgery(id: number) {
+  removeOrderSurgery(id: string) {
     return `This action removes a #${id} surgicalOrder`;
   }
 }

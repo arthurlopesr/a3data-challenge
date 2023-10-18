@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
@@ -27,24 +27,19 @@ export class SurgicalOrdersController {
     return this.surgicalOrdersService.findAllOrderSurgery();
   }
 
-  @Get(':id')
-  previewOrderSurgery(@Param('id') id: string) {
-    return this.surgicalOrdersService.previewOrderSurgery(+id);
-  }
-
-  @Patch(':id')
+  @Put(':code')
   updateOrderSurgery(
-    @Param('id') id: string,
+    @Param('code') code: string,
     @Body() updateSurgicalOrderDto: UpdateSurgicalOrderDto,
   ) {
     return this.surgicalOrdersService.updateOrderSurgery(
-      +id,
+      code,
       updateSurgicalOrderDto,
     );
   }
 
-  @Delete(':id')
-  removeOrderSurgery(@Param('id') id: string) {
-    return this.surgicalOrdersService.removeOrderSurgery(+id);
+  @Delete(':code')
+  removeOrderSurgery(@Param('code') code: string) {
+    return this.surgicalOrdersService.removeOrderSurgery(code);
   }
 }
