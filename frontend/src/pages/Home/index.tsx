@@ -1,9 +1,9 @@
-import { Container } from "./styles";
+import { Navbar } from "../../components/Navbar/Navbar";
 
 export function Home() {
   return (
-    <Container>
-      <h1>hello word!!!</h1>
-    </Container>
+    <div>
+      <Navbar />
+    </div>
   );
 }

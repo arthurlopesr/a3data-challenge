@@ -23,6 +23,7 @@ const lightScheme = {
 
   deepPink: "#F5039C",
   lightBlue: "#1F3AE8",
+  primary: "#081C73",
 };
 
 const aThreeDataTheme = {
@@ -65,7 +66,7 @@ const aThreeDataTheme = {
   },
 
   breakpoint: {
-    xs: "@media (min-width: 414px)",
+    xs: "@media (min-width: 390px)",
     sm: "@media (min-width: 576px)",
     md: "@media (min-width: 768px)",
     lg: "@media (min-width: 992px)",

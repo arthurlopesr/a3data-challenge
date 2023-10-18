@@ -1,3 +1,9 @@
+import { Navbar } from "../../components/Navbar/Navbar";
+
 export function SurgicalOrders() {
-  return <h1>SurgicalOrders</h1>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
