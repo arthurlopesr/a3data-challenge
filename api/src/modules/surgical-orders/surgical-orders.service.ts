@@ -1,5 +1,5 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { SurgicalOrdersRepository } from 'src/shared/database/repositories/surgical-orders.repositories';
+import { SurgicalOrdersRepository } from '../../shared/database/repositories/surgical-orders.repositories';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
 
