@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class CreateSurgicalOrderDto {
   @IsString()
@@ -21,7 +21,7 @@ export class CreateSurgicalOrderDto {
   @IsNotEmpty({ message: 'Hospital é obrigatório!' })
   hospital: string;
 
-  @IsString()
+  @IsDateString()
   @IsNotEmpty({ message: 'Data da cirurgia é obrigatória!' })
   surgeryDate: Date;
 
