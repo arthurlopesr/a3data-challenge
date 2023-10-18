@@ -1,11 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { SurgicalOrdersRepository } from 'src/shared/repositories/surgical-orders.repositories';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
 
 @Injectable()
 export class SurgicalOrdersService {
+  constructor(private readonly surgicalOrdersRepo: SurgicalOrdersRepository) {}
+
   createOrderSurgery(createSurgicalOrderDto: CreateSurgicalOrderDto) {
-    return createSurgicalOrderDto;
+    const {
+      doctor,
+      hospital,
+      medicalProcedure,
+      observations,
+      patient,
+      surgeryDate,
+      surgicalRoom,
+    } = createSurgicalOrderDto;
+
+    return this.surgicalOrdersRepo.create({
+      data: {
+        doctor,
+        hospital,
+        medicalProcedure,
+        observations,
+        patient,
+        surgeryDate,
+        surgicalRoom,
+      },
+    });
   }
 
   findAllOrderSurgery() {
