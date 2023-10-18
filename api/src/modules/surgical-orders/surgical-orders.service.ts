@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { SurgicalOrdersRepository } from '../../shared/database/repositories/surgical-orders.repositories';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
@@ -61,6 +65,16 @@ export class SurgicalOrdersService {
       surgeryDate,
       surgicalRoom,
     } = updateSurgicalOrderDto;
+
+    const updateOrderSurgeryNotTaken = await this.surgicalOrdersRepo.findFirst({
+      where: {
+        surgicalRoom,
+      },
+    });
+
+    if (updateOrderSurgeryNotTaken) {
+      throw new NotFoundException('Pedido de cirurgia não encontrado');
+    }
 
     return this.surgicalOrdersRepo.update({
       where: {
