@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { SurgicalOrdersRepository } from 'src/shared/repositories/surgical-orders.repositories';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
@@ -7,7 +7,7 @@ import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
 export class SurgicalOrdersService {
   constructor(private readonly surgicalOrdersRepo: SurgicalOrdersRepository) {}
 
-  createOrderSurgery(createSurgicalOrderDto: CreateSurgicalOrderDto) {
+  async createOrderSurgery(createSurgicalOrderDto: CreateSurgicalOrderDto) {
     const {
       doctor,
       hospital,
@@ -18,11 +18,18 @@ export class SurgicalOrdersService {
       surgicalRoom,
     } = createSurgicalOrderDto;
 
-    if (surgicalRoom && surgeryDate) {
-      throw new ConflictException(
-        'Essa sala já está reservada para essa data ',
-      );
-    }
+    // const roomTaken = await this.surgicalOrdersRepo.findMany({
+    //   where: {
+    //     surgicalRoom,
+    //     surgeryDate,
+    //   },
+    // });
+
+    // if (roomTaken) {
+    //   throw new ConflictException(
+    //     'Essa sala já está reservada para essa data ',
+    //   );
+    // }
 
     return this.surgicalOrdersRepo.create({
       data: {
