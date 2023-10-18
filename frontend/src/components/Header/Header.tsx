@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo_original.png";
 import { Container, Logo, Nav, NavLink } from "./styles";
 
-export function Navbar() {
+export function Header() {
   return (
     <Container>
       <Link to={"/"}>
