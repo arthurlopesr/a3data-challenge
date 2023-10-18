@@ -17,4 +17,8 @@ export class SurgicalOrdersRepository {
   findAll() {
     return this.prismaService.surgicalRequests.findMany();
   }
+
+  update(updateDto: Prisma.SurgicalRequestsUpdateArgs) {
+    return this.prismaService.surgicalRequests.update(updateDto);
+  }
 }

@@ -52,7 +52,30 @@ export class SurgicalOrdersService {
     code: string,
     updateSurgicalOrderDto: UpdateSurgicalOrderDto,
   ) {
-    return { code, updateSurgicalOrderDto };
+    const {
+      doctor,
+      hospital,
+      medicalProcedure,
+      observations,
+      patient,
+      surgeryDate,
+      surgicalRoom,
+    } = updateSurgicalOrderDto;
+
+    return this.surgicalOrdersRepo.update({
+      where: {
+        code,
+      },
+      data: {
+        doctor,
+        hospital,
+        medicalProcedure,
+        observations,
+        patient,
+        surgeryDate,
+        surgicalRoom,
+      },
+    });
   }
 
   removeOrderSurgery(id: string) {
