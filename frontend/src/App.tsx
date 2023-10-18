@@ -1,9 +1,5 @@
-import "./App.css";
+import { Home } from "./pages/Home";
 
 export default function App() {
-  return (
-    <>
-      <h1>hello word</h1>
-    </>
-  );
+  return <Home />;
 }
