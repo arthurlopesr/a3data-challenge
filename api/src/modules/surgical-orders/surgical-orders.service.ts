@@ -1,5 +1,5 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { SurgicalOrdersRepository } from 'src/shared/repositories/surgical-orders.repositories';
+import { SurgicalOrdersRepository } from 'src/shared/database/repositories/surgical-orders.repositories';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
 
@@ -44,8 +44,8 @@ export class SurgicalOrdersService {
     });
   }
 
-  findAllOrderSurgery() {
-    return `This action returns all surgicalOrders`;
+  async findAllOrderSurgery() {
+    return this.surgicalOrdersRepo.findAll();
   }
 
   previewOrderSurgery(id: number) {

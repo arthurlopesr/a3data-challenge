@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
-import { SurgicalOrdersRepository } from '../repositories/surgical-orders.repositories';
 import { PrismaService } from './prisma.service';
+import { SurgicalOrdersRepository } from './repositories/surgical-orders.repositories';
 
 @Global()
 @Module({
