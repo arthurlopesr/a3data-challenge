@@ -21,4 +21,8 @@ export class SurgicalOrdersRepository {
   update(updateDto: Prisma.SurgicalRequestsUpdateArgs) {
     return this.prismaService.surgicalRequests.update(updateDto);
   }
+
+  delete(deleteDto: Prisma.SurgicalRequestsDeleteArgs) {
+    return this.prismaService.surgicalRequests.delete(deleteDto);
+  }
 }

@@ -78,7 +78,13 @@ export class SurgicalOrdersService {
     });
   }
 
-  removeOrderSurgery(id: string) {
-    return `This action removes a #${id} surgicalOrder`;
+  async removeOrderSurgery(code: string) {
+    await this.surgicalOrdersRepo.delete({
+      where: {
+        code,
+      },
+    });
+
+    return null;
   }
 }

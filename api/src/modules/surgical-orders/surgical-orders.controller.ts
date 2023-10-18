@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Post,
@@ -40,7 +42,8 @@ export class SurgicalOrdersController {
   }
 
   @Delete(':code')
-  removeOrderSurgery(@Param('code') code: string) {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  removeOrderSurgery(@Param('code', ParseUUIDPipe) code: string) {
     return this.surgicalOrdersService.removeOrderSurgery(code);
   }
 }
