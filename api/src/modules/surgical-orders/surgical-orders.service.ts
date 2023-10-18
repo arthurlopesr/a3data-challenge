@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { SurgicalOrdersRepository } from 'src/shared/repositories/surgical-orders.repositories';
 import { CreateSurgicalOrderDto } from './dto/create-surgical-order.dto';
 import { UpdateSurgicalOrderDto } from './dto/update-surgical-order.dto';
@@ -18,18 +18,18 @@ export class SurgicalOrdersService {
       surgicalRoom,
     } = createSurgicalOrderDto;
 
-    // const roomTaken = await this.surgicalOrdersRepo.findMany({
-    //   where: {
-    //     surgicalRoom,
-    //     surgeryDate,
-    //   },
-    // });
+    const roomTaken = await this.surgicalOrdersRepo.findFirst({
+      where: {
+        surgicalRoom,
+        surgeryDate,
+      },
+    });
 
-    // if (roomTaken) {
-    //   throw new ConflictException(
-    //     'Essa sala já está reservada para essa data ',
-    //   );
-    // }
+    if (roomTaken) {
+      throw new ConflictException(
+        'Essa sala já está reservada para essa data ',
+      );
+    }
 
     return this.surgicalOrdersRepo.create({
       data: {

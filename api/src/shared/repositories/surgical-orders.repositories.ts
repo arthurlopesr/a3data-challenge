@@ -9,4 +9,8 @@ export class SurgicalOrdersRepository {
   create(createDto: Prisma.SurgicalRequestsCreateArgs) {
     return this.prismaService.surgicalRequests.create(createDto);
   }
+
+  findFirst(findFirstDto: Prisma.SurgicalRequestsFindFirstArgs) {
+    return this.prismaService.surgicalRequests.findFirst(findFirstDto);
+  }
 }
