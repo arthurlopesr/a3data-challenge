@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -29,7 +30,7 @@ export class SurgicalOrdersController {
 
   @Put(':code')
   updateOrderSurgery(
-    @Param('code') code: string,
+    @Param('code', ParseUUIDPipe) code: string,
     @Body() updateSurgicalOrderDto: UpdateSurgicalOrderDto,
   ) {
     return this.surgicalOrdersService.updateOrderSurgery(
