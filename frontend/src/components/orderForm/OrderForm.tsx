@@ -11,7 +11,13 @@ const schema = z.object({
   medicalProcedure: z.string().nonempty("Procedimento cirúrgico é obrigatório"),
   hospital: z.string().nonempty("Hospital é obrigatório"),
   doctor: z.string().nonempty("Médico responsável é obrigatório"),
-  surgeryDate: z.date(),
+  surgeryDate: z.date({
+    errorMap: () => {
+      return {
+        message: "Data de agendamento é obrigatório",
+      };
+    },
+  }),
   surgicalRoom: z.string().nonempty("Sala cirúrgica é obrigatório"),
   observations: z.string().nonempty("Observações é obrigatório"),
 });
