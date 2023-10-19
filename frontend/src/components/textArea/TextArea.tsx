@@ -1,8 +1,38 @@
-import { ComponentProps } from "react";
-import { TextAreaContainer } from "./styles";
+import { forwardRef, useId } from "react";
+import {
+  Container,
+  HelperText,
+  HelperTextContainer,
+  Label,
+  LabelContainer,
+  TextAreaContainer,
+} from "./styles";
 
-interface TextAreaProps extends ComponentProps<"textarea"> {}
+type TextAreaProps = {
+  label: string;
+  helperText?: string;
+} & React.InputHTMLAttributes<HTMLTextAreaElement>;
 
-export function TextArea({ ...props }: TextAreaProps) {
-  return <TextAreaContainer {...props} />;
-}
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  ({ label, helperText, ...rest }, ref) => {
+    const labelId = useId();
+    const hasError = helperText;
+
+    return (
+      <>
+        {label && (
+          <LabelContainer>
+            <Label htmlFor={labelId}>{label}</Label>
+          </LabelContainer>
+        )}
+        <Container>
+          <TextAreaContainer hasError={true} ref={ref} {...rest} />
+        </Container>
+
+        <HelperTextContainer>
+          {hasError && <HelperText>{helperText}</HelperText>}
+        </HelperTextContainer>
+      </>
+    );
+  }
+);

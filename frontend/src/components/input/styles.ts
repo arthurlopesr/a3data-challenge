@@ -1,5 +1,5 @@
 import { lighten } from "polished";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
 export const Container = styled.div`
@@ -29,7 +29,7 @@ export const Container = styled.div`
   }
 `;
 
-export const InputContainer = styled.input`
+export const InputContainer = styled.input<{ hasError: boolean }>`
   border: none;
   width: auto;
   ${theme.breakpoint("xs")} {
@@ -46,6 +46,12 @@ export const InputContainer = styled.input`
   ${theme.breakpoint("2xl")} {
     width: 100%;
   }
+
+  ${(hasError) =>
+    hasError &&
+    css`
+      border-color: ${theme.color("error")};
+    `}
 `;
 
 export const LabelContainer = styled.div`
@@ -75,4 +81,32 @@ export const Label = styled.label`
   margin-bottom: ${theme.space(1)};
   font-size: ${theme.space(4)};
   color: "#606060";
+`;
+
+export const HelperText = styled.p`
+  color: ${theme.color("error")};
+  font-size: ${theme.space(3)};
+  margin-top: ${theme.space(2)};
+`;
+
+export const HelperTextContainer = styled.div`
+  max-width: 1200px;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+
+  ${theme.breakpoint("xs")} {
+    width: ${theme.space(50)};
+  }
+
+  ${theme.breakpoint("xl")} {
+    width: 900px;
+  }
+  ${theme.breakpoint("lg")} {
+    width: 900px;
+  }
+
+  ${theme.breakpoint("2xl")} {
+    width: 1200px;
+  }
 `;
