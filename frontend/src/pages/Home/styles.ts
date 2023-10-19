@@ -2,5 +2,16 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 export const Container = styled.div`
-  background: ${theme.color("deepPink")};
+  width: 100vw;
+  position: relative;
+  min-height: 100vh;
+  max-width: 100vw;
+`;
+
+export const Wrapper = styled.div`
+  margin-top: ${theme.space(4)};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -1,9 +1,12 @@
-import { Header } from "../../components/Header/Header";
+import { Header } from "../../components/header/Header";
+import { OrderForm } from "../../components/orderForm/OrderForm";
+import { Container } from "./styles";
 
 export function Home() {
   return (
-    <div>
+    <Container>
       <Header />
-    </div>
+      <OrderForm />
+    </Container>
   );
 }

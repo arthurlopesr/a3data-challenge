@@ -21,6 +21,7 @@ const lightScheme = {
   textColor: "#1b1b1b",
   iconColor: "#1b1b1b",
 
+  lightPink: "#E3279E",
   deepPink: "#F5039C",
   lightBlue: "#1F3AE8",
   primary: "#081C73",
@@ -62,11 +63,12 @@ const aThreeDataTheme = {
     30: "13rem",
     40: "18rem",
     50: "23rem",
+    60: "30rem",
     80: "36rem",
   },
 
   breakpoint: {
-    xs: "@media (min-width: 390px)",
+    xs: "@media (min-width: 300px)",
     sm: "@media (min-width: 576px)",
     md: "@media (min-width: 768px)",
     lg: "@media (min-width: 992px)",
