@@ -1,47 +1,36 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { ChangeEvent } from "react";
+import { useOrderForm } from "../../hooks/useOrdersForm";
 import { Button } from "../button/Button";
 import { Input } from "../input/Input";
 import { TextArea } from "../textArea/TextArea";
 import { Container } from "./styles";
 
-const schema = z.object({
-  patientsName: z.string().nonempty("Nome da conta é obrigatório"),
-  medicalProcedure: z.string().nonempty("Procedimento cirúrgico é obrigatório"),
-  hospital: z.string().nonempty("Hospital é obrigatório"),
-  doctor: z.string().nonempty("Médico responsável é obrigatório"),
-  surgeryDate: z.date({
-    errorMap: () => {
-      return {
-        message: "Data de agendamento é obrigatório",
-      };
-    },
-  }),
-  surgicalRoom: z.string().nonempty("Sala cirúrgica é obrigatório"),
-  observations: z.string().nonempty("Observações é obrigatório"),
-});
-type FormData = z.infer<typeof schema>;
-
 export function OrderForm() {
   const {
+    errors,
     handleSubmit,
     register,
-    formState: { errors },
-  } = useForm<FormData>({
-    mode: "all",
-    reValidateMode: "onChange",
-    resolver: zodResolver(schema),
-  });
+    selectedDate,
+    setSelectedDate,
+    setIsoDate,
+  } = useOrderForm();
 
-  const handleForm = (data: FormData) => {
-    console.log(data);
+  const handleDataChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newDate = event.target.value;
+    const dateObject = new Date(newDate);
+
+    if (!isNaN(dateObject.getTime())) {
+      const isoDateString = dateObject.toISOString();
+      setIsoDate(isoDateString);
+      setSelectedDate(newDate);
+    } else {
+      console.error("Data inválida");
+    }
+    setSelectedDate(newDate);
   };
 
-  console.log(errors);
-
   return (
-    <Container onSubmit={handleSubmit(handleForm)}>
+    <Container onSubmit={handleSubmit}>
       <Input
         {...register("patientsName")}
         placeholder="Informe o nome do paciente"
@@ -74,6 +63,8 @@ export function OrderForm() {
         {...register("surgeryDate")}
         type="date"
         label="Data de Agendamento"
+        value={selectedDate}
+        onChange={handleDataChange}
         helperText={errors.surgeryDate?.message}
       />
       <Input
