@@ -9,7 +9,6 @@ export const TextAreaContainer = styled.textarea`
   margin-top: ${theme.space(5)};
   color: ${theme.color("grey800")};
   width: 1200px;
-  pointer-events: none;
   overflow: hidden;
   resize: none;
 

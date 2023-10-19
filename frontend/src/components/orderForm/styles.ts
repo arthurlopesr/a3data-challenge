@@ -14,21 +14,3 @@ export const Container = styled.form`
     outline: 2px solid #fff;
   }
 `;
-
-export const Input = styled.input`
-  all: unset;
-  flex: 1;
-  font-size: 14px;
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${theme.space(1)};
-  width: 1200px;
-
-  .Input {
-    width: 100px;
-  }
-`;

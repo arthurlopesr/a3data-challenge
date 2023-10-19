@@ -6,12 +6,28 @@ import { Container } from "./styles";
 export function OrderForm() {
   return (
     <Container action="">
-      <Input placeholder="Nome do Paciente" type="text" />
-      <Input placeholder="Procedimento" type="text" />
-      <Input placeholder="Hospital" type="text" />
-      <Input placeholder="Médico Responsável" type="text" />
-      <Input placeholder="Data" type="date" />
-      <Input placeholder="Sala" type="text" />
+      <Input
+        placeholder="Informe o nome do paciente"
+        type="text"
+        label="Nome do Paciente"
+      />
+      <Input
+        placeholder="Informe o procedimento cirugico"
+        type="text"
+        label="Procedimento"
+      />
+      <Input placeholder="Informe o hospital" type="text" label="Hospital" />
+      <Input
+        placeholder="Informe o medico responsável"
+        type="text"
+        label="Médico Responsável"
+      />
+      <Input type="date" label="Data de Agendamento" />
+      <Input
+        placeholder="Informe a sala da cirurgia"
+        type="text"
+        label="Sala da Cirurgia"
+      />
       <TextArea placeholder="Observação" />
       <Button type="submit">Cadastrar</Button>
     </Container>
