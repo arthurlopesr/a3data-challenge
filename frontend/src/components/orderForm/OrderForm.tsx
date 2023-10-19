@@ -6,37 +6,21 @@ import { TextArea } from "../textArea/TextArea";
 import { Container } from "./styles";
 
 export function OrderForm() {
-  const {
-    errors,
-    handleSubmit,
-    register,
-    selectedDate,
-    setSelectedDate,
-    setIsoDate,
-  } = useOrderForm();
+  const { errors, handleSubmit, register, setSelectedDate, selectedDate } =
+    useOrderForm();
 
   const handleDataChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newDate = event.target.value;
-    const dateObject = new Date(newDate);
-
-    if (!isNaN(dateObject.getTime())) {
-      const isoDateString = dateObject.toISOString();
-      setIsoDate(isoDateString);
-      setSelectedDate(newDate);
-    } else {
-      console.error("Data inválida");
-    }
-    setSelectedDate(newDate);
+    setSelectedDate(event.target.value);
   };
 
   return (
     <Container onSubmit={handleSubmit}>
       <Input
-        {...register("patientsName")}
+        {...register("patient")}
         placeholder="Informe o nome do paciente"
         type="text"
         label="Nome do Paciente"
-        helperText={errors.patientsName?.message}
+        helperText={errors.patient?.message}
       />
       <Input
         {...register("medicalProcedure")}

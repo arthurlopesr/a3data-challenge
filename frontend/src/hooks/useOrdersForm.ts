@@ -5,7 +5,7 @@ import { z } from "zod";
 import { httpClient } from "../services/httpClient";
 
 const schema = z.object({
-  patientsName: z.string().nonempty("Nome da conta é obrigatório"),
+  patient: z.string().nonempty("Nome da conta é obrigatório"),
   medicalProcedure: z.string().nonempty("Procedimento cirúrgico é obrigatório"),
   hospital: z.string().nonempty("Hospital é obrigatório"),
   doctor: z.string().nonempty("Médico responsável é obrigatório"),
@@ -25,9 +25,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function useOrderForm() {
-  const [selectedDate, setSelectedDate] = useState("");
-  const [isoDate, setIsoDate] = useState("");
-
   const {
     handleSubmit: hookFormHandleSubmit,
     register,
@@ -38,24 +35,20 @@ export function useOrderForm() {
     resolver: zodResolver(schema),
   });
 
+  const [selectedDate, setSelectedDate] = useState("");
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
-    await httpClient.post("/surgical-orders", data);
+    await httpClient.post("/surgical-orders", {
+      ...data,
+      surgeryDate: new Date(data.surgeryDate).toISOString(),
+    });
   });
-
-  const handleForm = (data: FormData) => {
-    console.log(data);
-  };
-
-  console.log(errors);
 
   return {
     handleSubmit,
     register,
-    handleForm,
     errors,
     selectedDate,
     setSelectedDate,
-    isoDate,
-    setIsoDate,
   };
 }
