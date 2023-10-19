@@ -13,6 +13,7 @@ const schema = z.object({
   doctor: z.string().nonempty("Médico responsável é obrigatório"),
   surgeryDate: z.date(),
   surgicalRoom: z.string().nonempty("Sala cirúrgica é obrigatório"),
+  observations: z.string().nonempty("Observações é obrigatório"),
 });
 type FormData = z.infer<typeof schema>;
 
@@ -76,7 +77,11 @@ export function OrderForm() {
         label="Sala da Cirurgia"
         helperText={errors.surgicalRoom?.message}
       />
-      <TextArea placeholder="Observações" label="Observações" />
+      <TextArea
+        placeholder="Observações"
+        {...register("observations")}
+        label="Observações"
+      />
       <Button type="submit">Cadastrar</Button>
     </Container>
   );
