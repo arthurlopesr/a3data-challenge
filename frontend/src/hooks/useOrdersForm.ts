@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { httpClient } from "../services/httpClient";
+import { SurgicalOrdersService } from "../services/SurgicalOrdersService";
 
 const schema = z.object({
   patient: z.string().nonempty("Nome da conta é obrigatório"),
@@ -38,10 +38,7 @@ export function useOrderForm() {
   const [selectedDate, setSelectedDate] = useState("");
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
-    await httpClient.post("/surgical-orders", {
-      ...data,
-      surgeryDate: new Date(data.surgeryDate).toISOString(),
-    });
+    await SurgicalOrdersService.createOrderSurgery(data);
   });
 
   return {
