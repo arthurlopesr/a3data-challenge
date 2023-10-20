@@ -1,8 +1,6 @@
 
 # A3 Data - Pedido Cirurgico
 
-Uma pokedex para entrevista técnica da MaxMilhas
-
 ## Tecnologias utilizadas
 
 | Tecnologias Backend| Descrição  |
