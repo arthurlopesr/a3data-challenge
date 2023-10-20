@@ -21,8 +21,8 @@ http://localhost:3001/
 }
   ```
 
-## Put
-* pdate an existing pet
+## Get
+* Find an existing order:
   * /surgical-orders/{code}
 ```sh
 {
@@ -38,7 +38,7 @@ http://localhost:3001/
 }
   ```
 
-## Update
+## Put
 * Update an existing order
   * /surgical-orders/{code}
 ```sh
